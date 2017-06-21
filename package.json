@@ -1,0 +1,32 @@
+{
+  "name": "unhcr-data-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "node_modules/.bin/tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glennvorhes/unhcr-data-api.git"
+  },
+  "author": "Glenn Vorhes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/glennvorhes/unhcr-data-api/issues"
+  },
+  "homepage": "https://github.com/glennvorhes/unhcr-data-api#readme",
+  "devDependencies": {
+    "@types/jasmine": "^2.5.52",
+    "jasmine": "^2.6.0",
+    "karma": "^1.7.0",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-typescript": "^3.0.4",
+    "typescript": "^2.3.4"
+  },
+  "dependencies": {
+    "axios": "^0.16.2"
+  }
+}
