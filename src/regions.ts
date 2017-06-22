@@ -9,35 +9,35 @@ export module regions {
 
     let regionsUrl = 'regions/';
 
-    export interface iSettlementBase {
+    export interface _iSettlementBase {
         name: string;
         updated_at: string;
     }
 
-    interface iSettlementReturned extends iSettlementBase {
+    interface _iSettlementReturned extends _iSettlementBase {
         latitude: string;
         longitude: string;
     }
 
-    export interface iSettlement extends iSettlementBase {
+    export interface _iSettlement extends _iSettlementBase {
         latitude: number;
         longitude: number;
     }
 
-    export interface iRegionBase {
+    export interface _iRegionBase {
         name: string;
         country: string;
     }
 
-    interface iRegionReturned extends iRegionBase{
-        settlements: iSettlementReturned[];
+    interface _iRegionReturned extends _iRegionBase{
+        settlements: _iSettlementReturned[];
     }
 
-    export interface iRegion extends iRegionBase{
-        settlements: iSettlement[];
+    export interface iRegion extends _iRegionBase{
+        settlements: _iSettlement[];
     }
 
-    function fixSettlement(sr: iSettlementReturned): iSettlement{
+    function fixSettlement(sr: _iSettlementReturned): _iSettlement{
         return {
             name: sr.name,
             updated_at: sr.updated_at,
@@ -46,7 +46,7 @@ export module regions {
         }
     }
 
-    function fixRegion(rr: iRegionReturned): iRegion{
+    function fixRegion(rr: _iRegionReturned): iRegion{
         let r: iRegion = {
             name: rr.name,
             country: rr.country,
@@ -63,7 +63,7 @@ export module regions {
     export const show = (regionId: string,
                          callback: (d: iRegion[]) => any,
                          error: (e: iError) => any = defaultError) => {
-        axios_get(regionsUrl + 'show', (d: iRegionReturned[]): any => {
+        axios_get(regionsUrl + 'show', (d: _iRegionReturned[]): any => {
 
             let regionArr: iRegion[] = [];
 

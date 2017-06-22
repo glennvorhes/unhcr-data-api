@@ -22,33 +22,33 @@ export module countries {
         countries: Array<{name_en?: string, country_code: string}>
     }
 
-    export interface iRegionBase {
+    export interface _iRegionBase {
         name: string;
     }
 
-    interface iRegionReturned extends iRegionBase {
+    interface _iRegionReturned extends _iRegionBase {
         longitude: string;
         latitude: string;
     }
 
-    export interface iRegion extends iRegionBase {
+    export interface _iRegion extends _iRegionBase {
         longitude: number;
         latitude: number;
     }
 
-    export interface iCountryRegionInfoBase {
+    export interface _iCountryRegionInfoBase {
         name: string;
     }
 
-    interface iCountryRegionInfoReturned extends iCountryRegionInfoBase {
-        regions: iRegionReturned[]
+    interface _iCountryRegionInfoReturned extends _iCountryRegionInfoBase {
+        regions: _iRegionReturned[]
     }
 
-    export interface iCountryRegionInfo extends iCountryRegionInfoBase {
-        regions: iRegion[]
+    export interface iCountryRegionInfo extends _iCountryRegionInfoBase {
+        regions: _iRegion[]
     }
 
-    function fixRegion(r: iRegionReturned): iRegion {
+    function fixRegion(r: _iRegionReturned): _iRegion {
         return {
             name: r.name,
             longitude: parseFloat(r.longitude),
@@ -56,7 +56,7 @@ export module countries {
         }
     }
 
-    function fixCountryRegionInfo(crr: iCountryRegionInfoReturned): iCountryRegionInfo {
+    function fixCountryRegionInfo(crr: _iCountryRegionInfoReturned): iCountryRegionInfo {
         let cr: iCountryRegionInfo = {
             name: crr.name,
             regions: []
@@ -83,7 +83,7 @@ export module countries {
     export const show = (countryId: string,
                          callback: (d: iCountryRegionInfo[]) => any,
                          error: (e: iError) => any = defaultError) => {
-        axios_get(countriesUrl + 'show', (d: iCountryRegionInfoReturned[]): any => {
+        axios_get(countriesUrl + 'show', (d: _iCountryRegionInfoReturned[]): any => {
             let arr: iCountryRegionInfo[] = [];
 
             for (let cr of d){
